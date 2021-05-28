@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Header from '../components/Header'
 import InputForm from '../components/InputForm'
+import Footer from '../components/SaveJokes'
 import { Context } from '../context/Context'
 
 export default function MainScreen() {
@@ -8,13 +9,14 @@ export default function MainScreen() {
 
   return (
     <div>
+      <Header />
       <section>
-        <Header />
         <InputForm />
         <button onClick={drawNewRandomJoke}>
           Draw a random {fullName === '' ? 'Chuck Norris' : fullName} joke
         </button>
       </section>
+      <Footer />
     </div>
   )
 }

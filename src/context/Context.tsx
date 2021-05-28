@@ -25,7 +25,7 @@ function ContextProvider({ children }: ChildrenProp) {
   const [fullName, setFullName] = React.useState('')
   const [category, setCategory] = React.useState('')
   const [isNameChanged, setIsNameChanged] = React.useState(false)
-  const [randomNumber, setRandomNumber] = React.useState(0)
+  const [jokeCounter, setJokeCounter] = React.useState(0)
 
   const URL_BY_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`
   const RANDOM_URL: string = 'http://api.icndb.com/jokes/random?'
@@ -57,7 +57,7 @@ function ContextProvider({ children }: ChildrenProp) {
   }
 
   const drawNewRandomJoke = () => {
-    if (firstName && lastName && category !== '') {
+    if (firstName && lastName && category) {
       getJokes(URL_BY_CATEGORY_AND_FULL_NAME)
     } else if (category !== '') {
       getJokes(URL_BY_CATEGORY)
@@ -75,6 +75,10 @@ function ContextProvider({ children }: ChildrenProp) {
     }
   }
 
+  function saveJokes() {
+    setJokeCounter(0)
+  }
+
   return (
     <Context.Provider
       value={{
@@ -88,6 +92,9 @@ function ContextProvider({ children }: ChildrenProp) {
         firstName,
         lastName,
         isNameChanged,
+        jokeCounter,
+        setJokeCounter,
+        saveJokes,
       }}>
       {children}
     </Context.Provider>
