@@ -25,20 +25,12 @@ function ContextProvider({ children }: ChildrenProp) {
   const [fullName, setFullName] = React.useState('')
   const [category, setCategory] = React.useState('')
   const [isNameChanged, setIsNameChanged] = React.useState(false)
+  const [randomNumber, setRandomNumber] = React.useState(0)
 
   const URL_BY_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`
   const RANDOM_URL: string = 'http://api.icndb.com/jokes/random?'
-  const URL_BY_CATEGORY: string = `http://api.icndb.com/jokes/random?limitTo=${category}`
-  const URL_BY_CATEGORY_AND_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=${category}`
-
-  const JOKE_API_URL =
-    firstName && lastName
-      ? URL_BY_FULL_NAME
-      : category
-      ? URL_BY_CATEGORY
-      : firstName && lastName && category
-      ? URL_BY_CATEGORY_AND_FULL_NAME
-      : RANDOM_URL
+  const URL_BY_CATEGORY: string = `http://api.icndb.com/jokes/random?limitTo=[${category}]`
+  const URL_BY_CATEGORY_AND_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[${category}]`
 
   const getJokes = async (jokeUrl: string) => {
     const res = await fetch(jokeUrl)
@@ -48,7 +40,7 @@ function ContextProvider({ children }: ChildrenProp) {
   }
 
   React.useEffect(() => {
-    getJokes(JOKE_API_URL)
+    getJokes(RANDOM_URL)
   }, [])
 
   const handleValueChange = (e: { target: { value: string } }) => {
@@ -65,7 +57,17 @@ function ContextProvider({ children }: ChildrenProp) {
   }
 
   const drawNewRandomJoke = () => {
-    getJokes(JOKE_API_URL)
+    if (firstName && lastName && category !== '') {
+      getJokes(URL_BY_CATEGORY_AND_FULL_NAME)
+    } else if (category !== '') {
+      getJokes(URL_BY_CATEGORY)
+    } else if (firstName && lastName) {
+      getJokes(URL_BY_FULL_NAME)
+    } else {
+      getJokes(RANDOM_URL)
+    }
+
+    setCategory(category)
     if (firstName !== '' && lastName !== '') {
       setIsNameChanged(true)
     } else {
