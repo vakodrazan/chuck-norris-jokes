@@ -1,8 +1,8 @@
-import * as React from 'react'
+import React from 'react'
+import MainScreen from './container/MainScreen'
 
-const App = () => {
-  const heading: string = 'Chuck Norris'
-  return <h1>{heading} Jokes</h1>
+function App() {
+  return <MainScreen />
 }
 
 export default App

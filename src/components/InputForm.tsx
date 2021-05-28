@@ -1,14 +1,22 @@
 import * as React from 'react'
-import { Context } from '../Pages/Context'
+import { Context } from '../context/Context'
 
 export default function InputForm() {
-  const { fullName, handleValueChange } = React.useContext(Context)
+  const { fullName, handleValueChange, category, setCategory } =
+    React.useContext(Context)
+
+  const categories = ['nerdy', 'explicit']
   return (
     <>
-      <select>
+      <select
+        value={category}
+        onChange={({ target }) => setCategory(target.value)}>
         <option value=''>Category</option>
-        <option value='explicit'>explicit</option>
-        <option value='nerdy'>nerdy</option>
+        {categories.map((cat, index) => (
+          <option key={cat + index} value={cat}>
+            {cat}
+          </option>
+        ))}
       </select>
       <fieldset>
         <label>Impersonate Chuck Norris</label>
