@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Context } from '../../context/Context'
+import TextField from '@material-ui/core/TextField'
 import './InputForm.css'
-
-import DropDownArrow from '../../images/dropdown_arrow.svg'
+import InputBase from '@material-ui/core/InputBase'
 
 export default function InputForm() {
   const {
@@ -13,7 +13,7 @@ export default function InputForm() {
     onOptionClicked,
     onToggle,
   } = React.useContext(Context)
-
+  const [isClicked, setIsClicked] = React.useState(false)
   const categories = ['Nerdy', 'Explicit']
 
   const placeholder = isOpen ? 'Select category' : 'category'
@@ -81,12 +81,27 @@ export default function InputForm() {
           )}
         </div>
       </div>
-      <fieldset className='full_name'>
-        <label className=''>Impersonate Chuck Norris</label>
-        <input
+      <fieldset className={fullName ? 'full_name--focus' : 'full_name'}>
+        <TextField
+          className='full_name__input'
+          id='filled-basic'
           value={fullName}
           onChange={handleValueChange}
-          className='full_name__input'
+          label='Impersonate Chuck Norris'
+          aria-label='Impersonate Chuck Norris'
+          variant='filled'
+          InputProps={{
+            style: {
+              backgroundColor: '#fff',
+            },
+            disableUnderline: true,
+          }}
+          InputLabelProps={{
+            style: {
+              color: '#c4c4c4',
+              fontSize: 16,
+            },
+          }}
         />
       </fieldset>
     </div>

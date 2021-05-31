@@ -94,18 +94,34 @@
 .full_name {
   margin: 0;
   margin-top: 26px;
+  border: none;
+  padding: 0;
   border-radius: var(--border-radius);
-  padding: 16px;
+  padding: 4px;
+  border-style: solid;
   border: solid 1px #c4c4c4;
 }
 
-.full_name__input {
+.full_name--focus {
+  margin: 0;
+  margin-top: 26px;
   border: none;
-  width: 100%;
+  padding: 0;
+  border-radius: var(--border-radius);
+  padding: 4px;
+  border-style: solid;
+  border: solid 2px #34394f;
 }
 
-.full_name__input:focus {
-  outline: none;
+.full_name__input {
+  width: 100%;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  color: #c4c4c4;
+  position: relative;
+  letter-spacing: -0.52px;
+  background-color: #fff;
 }
 
 @media (min-width: 650px) {
