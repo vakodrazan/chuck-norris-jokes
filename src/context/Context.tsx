@@ -29,12 +29,12 @@ function ContextProvider({ children }: ChildrenProp) {
   const [jokeCounter, setJokeCounter] = React.useState(0)
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const URL_BY_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`
-  const RANDOM_URL: string = 'http://api.icndb.com/jokes/random?'
-  const URL_BY_CATEGORY: string = `http://api.icndb.com/jokes/random?limitTo=[${category.toLocaleLowerCase()}]`
-  const URL_BY_CATEGORY_AND_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[${category.toLocaleLowerCase()}]`
+  const URL_BY_FULL_NAME: string = `https://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`
+  const RANDOM_URL: string = 'https://api.icndb.com/jokes/random?'
+  const URL_BY_CATEGORY: string = `https://api.icndb.com/jokes/random?limitTo=[${category.toLocaleLowerCase()}]`
+  const URL_BY_CATEGORY_AND_FULL_NAME: string = `https://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[${category.toLocaleLowerCase()}]`
 
-  const URL_RANDOM_COUNT: string = `http://api.icndb.com/jokes/random`
+  const URL_RANDOM_COUNT: string = `https://api.icndb.com/jokes/random`
 
   const getJokes = async (jokeUrl: string) => {
     const res = await fetch(jokeUrl)
@@ -45,6 +45,7 @@ function ContextProvider({ children }: ChildrenProp) {
 
   React.useEffect(() => {
     getJokes(RANDOM_URL)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleValueChange = (e: { target: { value: string } }) => {
@@ -93,6 +94,7 @@ function ContextProvider({ children }: ChildrenProp) {
 
   React.useEffect(() => {
     getJokeData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jokeCounter])
 
   function saveJokes(filename: string) {
