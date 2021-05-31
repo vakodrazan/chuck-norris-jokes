@@ -33,6 +33,8 @@ function ContextProvider({ children }: ChildrenProp) {
   const URL_BY_CATEGORY: string = `http://api.icndb.com/jokes/random?limitTo=[${category}]`
   const URL_BY_CATEGORY_AND_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[${category}]`
 
+  const URL_RANDOM_COUNT: string = `http://api.icndb.com/jokes/random`
+
   const getJokes = async (jokeUrl: string) => {
     const res = await fetch(jokeUrl)
     const data = await res.json()
@@ -77,7 +79,14 @@ function ContextProvider({ children }: ChildrenProp) {
   }
 
   const getJokeData = async () => {
-    const res = await fetch(`http://api.icndb.com/jokes/random/${jokeCounter}`)
+    let jokeUrl: string
+    if ((firstName && lastName) || category) {
+      jokeUrl = `${URL_RANDOM_COUNT}?firstName=${firstName}&lastName=${lastName}&limitTo=[${category}]`
+    } else {
+      jokeUrl = URL_RANDOM_COUNT
+    }
+
+    const res = await fetch(`${jokeUrl}/${jokeCounter}`)
     const data = await res.json()
     setSavedJokes(data)
   }
