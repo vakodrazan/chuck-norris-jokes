@@ -29,12 +29,13 @@ function ContextProvider({ children }: ChildrenProp) {
   const [jokeCounter, setJokeCounter] = React.useState(0)
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const URL_BY_FULL_NAME: string = `https://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`
-  const RANDOM_URL: string = 'https://api.icndb.com/jokes/random?'
-  const URL_BY_CATEGORY: string = `https://api.icndb.com/jokes/random?limitTo=[${category.toLocaleLowerCase()}]`
-  const URL_BY_CATEGORY_AND_FULL_NAME: string = `https://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[${category.toLocaleLowerCase()}]`
+  const FULL_NAME_URL: string = `firstName=${firstName}&lastName=${lastName}`
+  const CATEGORY_URL: string = `limitTo=[${category.toLocaleLowerCase()}]`
 
-  const URL_RANDOM_COUNT: string = `https://api.icndb.com/jokes/random`
+  const RANDOM_URL: string = 'https://api.icndb.com/jokes/random'
+  const URL_BY_FULL_NAME: string = `${RANDOM_URL}?${FULL_NAME_URL}`
+  const URL_BY_CATEGORY: string = `${RANDOM_URL}?${CATEGORY_URL}`
+  const URL_BY_CATEGORY_AND_FULL_NAME: string = `${RANDOM_URL}?${FULL_NAME_URL}&${CATEGORY_URL}`
 
   const getJokes = async (jokeUrl: string) => {
     const res = await fetch(jokeUrl)
@@ -82,11 +83,11 @@ function ContextProvider({ children }: ChildrenProp) {
 
   const getJokeData = async () => {
     let jokeUrl: string
-    const API_URL: string = `${URL_RANDOM_COUNT}/${jokeCounter}?firstName=${firstName}&lastName=${lastName}&limitTo=[${category.toLocaleLowerCase()}]`
+    const API_URL: string = `${RANDOM_URL}/${jokeCounter}?${FULL_NAME_URL}&${CATEGORY_URL}`
     if ((firstName && lastName) || category) {
       jokeUrl = `${API_URL}`
     } else {
-      jokeUrl = `${URL_RANDOM_COUNT}/${jokeCounter}`
+      jokeUrl = `${RANDOM_URL}/${jokeCounter}`
     }
 
     const res = await fetch(jokeUrl)

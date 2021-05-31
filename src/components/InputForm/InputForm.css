@@ -19,13 +19,11 @@
   flex-direction: column;
   border: 1px solid #c4c4c4;
   max-width: 100%;
-  z-index: 2;
   background-color: #fff;
   padding: 16px;
   margin-right: 58px;
   width: 439px;
   border-radius: var(--border-radius);
-  z-index: 2;
 }
 
 .select__content__heading {

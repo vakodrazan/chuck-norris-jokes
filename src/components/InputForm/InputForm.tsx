@@ -88,6 +88,7 @@ export default function InputForm() {
           label='Impersonate Chuck Norris'
           aria-label='Impersonate Chuck Norris'
           variant='filled'
+          autoComplete='off'
           InputProps={{
             style: {
               backgroundColor: '#fff',

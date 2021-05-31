@@ -25,7 +25,7 @@ export default function Header() {
         )}
       </h1>
       {loadingState ? (
-        <p>Loading...</p>
+        <h2>Loading...</h2>
       ) : (
         <q className='header__content'>{value?.joke}</q>
       )}
