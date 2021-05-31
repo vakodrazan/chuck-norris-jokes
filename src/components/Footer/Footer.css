@@ -28,6 +28,19 @@ button:hover {
   border-radius: var(--border-radius);
   background-color: var(--background-color);
 }
+
+.footer__content__votes-not-valid {
+  --background-color: #f39a9a;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 16px;
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+}
+
 .footer__content__votes__value {
   max-width: 100%;
   width: 40%;
@@ -50,6 +63,7 @@ button:hover {
 
 .footer__content__votes__button {
   padding: 0;
+  background-color: var(--background-color);
 }
 
 .footer__content__save-button {
@@ -71,20 +85,6 @@ button:hover {
   color: #34394f;
 }
 
-@media (min-width: 500px) {
-  .footer__content {
-    flex-direction: row;
-  }
-
-  .footer__content__votes {
-    width: 35%;
-  }
-
-  .footer__content__save-button {
-    width: 65%;
-  }
-}
-
 .footer__alert {
   padding: 0;
   padding-top: 12px;
@@ -98,4 +98,21 @@ button:hover {
   letter-spacing: -0.52px;
   text-align: left;
   color: #f39a9a;
+}
+@media (min-width: 500px) {
+  .footer__content {
+    flex-direction: row;
+  }
+
+  .footer__content__votes {
+    width: 30%;
+  }
+
+  .footer__content__votes-not-valid {
+    width: 30%;
+  }
+
+  .footer__content__save-button {
+    width: 65%;
+  }
 }

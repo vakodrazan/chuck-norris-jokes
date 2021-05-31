@@ -38,7 +38,12 @@ export default function Footer() {
   return (
     <footer className='footer'>
       <div className='footer__content'>
-        <div className='footer__content__votes'>
+        <div
+          className={
+            isErrorPopUp
+              ? 'footer__content__votes-not-valid'
+              : 'footer__content__votes'
+          }>
           <button
             className='footer__content__votes__button'
             onClick={() => setJokeCounter(jokeCounter - 1)}>

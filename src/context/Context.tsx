@@ -45,6 +45,7 @@ function ContextProvider({ children }: ChildrenProp) {
 
   React.useEffect(() => {
     getJokes(RANDOM_URL)
+    // This line is required when deploying the site with all the useeffect
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -120,7 +121,7 @@ function ContextProvider({ children }: ChildrenProp) {
     setIsOpen(false)
   }
 
-  const onToggle = () => {
+  const onToggleOpen = () => {
     if (isOpen) {
       setIsOpen(!isOpen)
     } else {
@@ -152,7 +153,7 @@ function ContextProvider({ children }: ChildrenProp) {
         isOpen,
         setIsOpen,
         onOptionClicked,
-        onToggle,
+        onToggleOpen,
         onToggleClose,
       }}>
       {children}

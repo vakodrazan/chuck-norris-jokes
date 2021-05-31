@@ -10,7 +10,7 @@ export default function InputForm() {
     category,
     isOpen,
     onOptionClicked,
-    onToggle,
+    onToggleOpen,
   } = React.useContext(Context)
   const categories = ['Nerdy', 'Explicit']
 
@@ -48,7 +48,7 @@ export default function InputForm() {
 
   return (
     <div className='wrapper'>
-      <div className='select' onClick={onToggle}>
+      <div className='select' onClick={onToggleOpen}>
         <div className='select__content'>
           <p
             className={
