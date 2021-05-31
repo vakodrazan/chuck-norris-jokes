@@ -95,9 +95,9 @@
   margin: 0;
   margin-top: 26px;
   border: none;
-  padding: 0;
   border-radius: var(--border-radius);
   padding: 4px;
+  padding-top: 0;
   border-style: solid;
   border: solid 1px #c4c4c4;
 }

@@ -12,9 +12,12 @@ export default function MainScreen() {
   return (
     <div className='content' onClick={onToggleClose}>
       <Header />
-      <section>
+      <section className='content__form'>
         <InputForm />
-        <button onClick={drawNewRandomJoke}>
+        <button
+          className='content__form__button'
+          aria-label='Draw a new random jokes'
+          onClick={drawNewRandomJoke}>
           Draw a random {fullName === '' ? 'Chuck Norris' : fullName} joke
         </button>
       </section>

@@ -9,3 +9,27 @@
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
   z-index: -1;
 }
+
+.content__form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-bottom: 52px;
+}
+
+.content__form__button {
+  padding-top: 16.8px;
+  padding-bottom: 15.2px;
+  border-radius: 6px;
+  background-color: #34394f;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.63;
+  letter-spacing: -0.52px;
+  text-align: center;
+  color: #fff;
+  border: none;
+}
