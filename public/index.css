@@ -9,6 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Inter', sans-serif;
 }
 
 img {
@@ -27,4 +28,9 @@ p {
     width: 100vw;
     height: 100vh;
   }
+}
+
+input,
+button {
+  font-family: 'Inter', sans-serif;
 }
