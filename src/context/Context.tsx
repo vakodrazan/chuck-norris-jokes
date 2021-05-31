@@ -24,6 +24,7 @@ function ContextProvider({ children }: ChildrenProp) {
   const [lastName, setLastName] = React.useState('')
   const [fullName, setFullName] = React.useState('')
   const [category, setCategory] = React.useState('')
+  const [savedJokes, setSavedJokes] = React.useState({})
   const [isNameChanged, setIsNameChanged] = React.useState(false)
   const [jokeCounter, setJokeCounter] = React.useState(0)
 
@@ -75,7 +76,31 @@ function ContextProvider({ children }: ChildrenProp) {
     }
   }
 
-  function saveJokes() {
+  const getJokeData = async () => {
+    const res = await fetch(`http://api.icndb.com/jokes/random/${jokeCounter}`)
+    const data = await res.json()
+    setSavedJokes(data)
+  }
+
+  React.useEffect(() => {
+    getJokeData()
+  }, [jokeCounter])
+
+  function saveJokes(filename: string) {
+    let downloadJokesElement = document.createElement('a')
+
+    const convertedJokes = JSON.stringify(savedJokes)
+
+    downloadJokesElement.setAttribute(
+      'href',
+      'data:text/plain;charset=utf-8,' + encodeURIComponent(`${convertedJokes}`)
+    )
+    downloadJokesElement.setAttribute('download', filename)
+
+    downloadJokesElement.style.display = 'none'
+    document.body.appendChild(downloadJokesElement)
+
+    downloadJokesElement.click()
     setJokeCounter(0)
   }
 
