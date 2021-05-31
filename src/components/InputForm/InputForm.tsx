@@ -2,6 +2,8 @@ import * as React from 'react'
 import { Context } from '../../context/Context'
 import './InputForm.css'
 
+import DropDownArrow from '../../images/dropdown_arrow.svg'
+
 export default function InputForm() {
   const {
     fullName,
@@ -17,6 +19,35 @@ export default function InputForm() {
   const placeholder = isOpen ? 'Select category' : 'category'
   const selectedValue = category || placeholder
 
+  const dropDownArrow = isOpen ? (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      height='24'
+      viewBox='0 0 25 24'
+      width='25'>
+      <path
+        fill='#34394F'
+        fillRule='evenodd'
+        d='M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z'
+        clipRule='evenodd'
+      />
+    </svg>
+  ) : (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='25'
+      height='24'
+      fill='none'
+      viewBox='0 0 25 24'>
+      <path
+        fill='currentColor'
+        fillRule='evenodd'
+        d='M16.637 8.97c.292.293.292.767 0 1.06l-3.982 4c-.291.293-.764.293-1.055 0l-3.982-4c-.292-.293-.292-.767 0-1.06.291-.293.764-.293 1.055 0l3.454 3.47 3.454-3.47c.292-.293.765-.293 1.056 0z'
+        clipRule='evenodd'
+      />
+    </svg>
+  )
+
   return (
     <div className='wrapper'>
       <div className='select' onClick={onToggle}>
@@ -27,8 +58,15 @@ export default function InputForm() {
                 ? 'select__content__heading-default'
                 : 'select__content__heading'
             }>
-            {selectedValue}
+            {isOpen ? (
+              <span className='placeholder'>{placeholder}</span>
+            ) : (
+              <span>{selectedValue}</span>
+            )}
+
+            {dropDownArrow}
           </p>
+
           {isOpen && (
             <ul className='select__content__options'>
               {categories.map((cat) => (
