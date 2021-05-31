@@ -1,14 +1,15 @@
 import * as React from 'react'
-import Header from '../components/Header'
-import InputForm from '../components/InputForm'
-import Footer from '../components/SaveJokes'
-import { Context } from '../context/Context'
+import Header from '../../components/Header/Header'
+import InputForm from '../../components/InputForm/InputForm'
+import Footer from '../../components/Footer/Footer'
+import { Context } from '../../context/Context'
+import './MainScreen.css'
 
 export default function MainScreen() {
   const { fullName, drawNewRandomJoke } = React.useContext(Context)
 
   return (
-    <div>
+    <div className='content'>
       <Header />
       <section>
         <InputForm />
