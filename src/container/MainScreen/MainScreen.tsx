@@ -6,10 +6,11 @@ import { Context } from '../../context/Context'
 import './MainScreen.css'
 
 export default function MainScreen() {
-  const { fullName, drawNewRandomJoke, onToggle } = React.useContext(Context)
+  const { fullName, drawNewRandomJoke, onToggleClose } =
+    React.useContext(Context)
 
   return (
-    <div className='content' onClick={onToggle}>
+    <div className='content' onClick={onToggleClose}>
       <Header />
       <section>
         <InputForm />

@@ -8,6 +8,8 @@
 .select {
   position: relative;
   margin-right: 34px;
+  z-index: 3;
+  cursor: pointer;
 }
 
 .select__content {
@@ -23,6 +25,7 @@
   margin-right: 58px;
   width: 439px;
   border-radius: var(--border-radius);
+  z-index: 2;
 }
 
 .select__content__heading {
@@ -59,21 +62,20 @@
 }
 
 .select__content__options__item {
-  max-width: 100%;
-  width: 423px;
+  width: 102%;
+  max-width: 425px;
   padding-top: 20px;
   padding-bottom: 20px;
-  align-self: center;
+  align-self: flex-start;
   padding-left: 8px;
   margin-left: -8px;
-  left: 20px;
+  cursor: pointer;
 }
 
 .select__content__options__item:hover {
   align-self: flex-start;
   flex-grow: 0;
   border-radius: 6px;
-  width: 423px;
   background-color: #e9e9e9;
 }
 

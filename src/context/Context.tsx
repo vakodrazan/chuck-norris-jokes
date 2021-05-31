@@ -119,7 +119,17 @@ function ContextProvider({ children }: ChildrenProp) {
   }
 
   const onToggle = () => {
-    setIsOpen(!isOpen)
+    if (isOpen) {
+      setIsOpen(!isOpen)
+    } else {
+      setIsOpen(!isOpen)
+    }
+  }
+
+  const onToggleClose = () => {
+    if (isOpen) {
+      setIsOpen(!isOpen)
+    }
   }
 
   return (
@@ -141,6 +151,7 @@ function ContextProvider({ children }: ChildrenProp) {
         setIsOpen,
         onOptionClicked,
         onToggle,
+        onToggleClose,
       }}>
       {children}
     </Context.Provider>

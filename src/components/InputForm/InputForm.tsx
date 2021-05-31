@@ -19,15 +19,14 @@ export default function InputForm() {
 
   return (
     <div className='wrapper'>
-      <div className='select'>
+      <div className='select' onClick={onToggle}>
         <div className='select__content'>
           <p
             className={
               category
                 ? 'select__content__heading-default'
                 : 'select__content__heading'
-            }
-            onClick={onToggle}>
+            }>
             {selectedValue}
           </p>
           {isOpen && (
