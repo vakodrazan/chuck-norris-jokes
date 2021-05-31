@@ -63,7 +63,9 @@ export default function Footer() {
           Save jokes
         </button>
       </div>
-      {isErrorPopUp && <p>You can pick a number from 1 to 100.</p>}
+      {isErrorPopUp && (
+        <p className='footer__alert'>You can pick a number from 1 to 100.</p>
+      )}
     </footer>
   )
 }

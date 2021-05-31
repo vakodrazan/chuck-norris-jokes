@@ -6,6 +6,10 @@ button {
   border: none;
 }
 
+button:hover {
+  outline: none;
+}
+
 .footer__content {
   display: flex;
   flex-direction: column;
@@ -79,4 +83,19 @@ button {
   .footer__content__save-button {
     width: 65%;
   }
+}
+
+.footer__alert {
+  padding: 0;
+  padding-top: 12px;
+  opacity: 0.6;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.63;
+  letter-spacing: -0.52px;
+  text-align: left;
+  color: #f39a9a;
 }
