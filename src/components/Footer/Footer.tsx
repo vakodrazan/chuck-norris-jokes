@@ -3,7 +3,7 @@ import { Context } from '../../context/Context'
 import './Footer.css'
 
 export default function Footer() {
-  const { jokeCounter, setJokeCounter, saveJokes } = React.useContext(Context)
+  const { jokeCounter, setJokeCounter, onSaveJokes } = React.useContext(Context)
   const [isActive, setIsActive] = React.useState(false)
   const isDisabled = jokeCounter < 1 || jokeCounter > 100
   const isErrorPopUp = jokeCounter < 0 || jokeCounter > 100
@@ -118,7 +118,7 @@ export default function Footer() {
         <button
           className='footer__content__save-button'
           disabled={isDisabled}
-          onClick={() => saveJokes('jokes.txt')}>
+          onClick={() => onSaveJokes('jokes.txt')}>
           Save jokes
         </button>
       </div>

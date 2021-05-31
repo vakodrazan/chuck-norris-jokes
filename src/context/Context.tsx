@@ -82,13 +82,14 @@ function ContextProvider({ children }: ChildrenProp) {
 
   const getJokeData = async () => {
     let jokeUrl: string
+    const API_URL: string = `${URL_RANDOM_COUNT}/${jokeCounter}?firstName=${firstName}&lastName=${lastName}&limitTo=[${category.toLocaleLowerCase()}]`
     if ((firstName && lastName) || category) {
-      jokeUrl = `${URL_RANDOM_COUNT}?firstName=${firstName}&lastName=${lastName}&limitTo=[${category.toLocaleLowerCase()}]`
+      jokeUrl = `${API_URL}`
     } else {
-      jokeUrl = URL_RANDOM_COUNT
+      jokeUrl = `${URL_RANDOM_COUNT}/${jokeCounter}`
     }
 
-    const res = await fetch(`${jokeUrl}/${jokeCounter}`)
+    const res = await fetch(jokeUrl)
     const data = await res.json()
     setSavedJokes(data)
   }
@@ -98,7 +99,7 @@ function ContextProvider({ children }: ChildrenProp) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jokeCounter])
 
-  function saveJokes(filename: string) {
+  function onSaveJokes(filename: string) {
     let downloadJokesElement = document.createElement('a')
 
     const convertedJokes = JSON.stringify(savedJokes)
@@ -149,7 +150,7 @@ function ContextProvider({ children }: ChildrenProp) {
         isNameChanged,
         jokeCounter,
         setJokeCounter,
-        saveJokes,
+        onSaveJokes,
         isOpen,
         setIsOpen,
         onOptionClicked,
