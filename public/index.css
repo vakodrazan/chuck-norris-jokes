@@ -34,3 +34,11 @@ input,
 button {
   font-family: 'Inter', sans-serif;
 }
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: unset;
+}
