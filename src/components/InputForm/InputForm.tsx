@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Context } from '../context/Context'
+import { Context } from '../../context/Context'
+import './InputForm.css'
 
 export default function InputForm() {
   const { fullName, handleValueChange, category, setCategory } =
@@ -10,6 +11,7 @@ export default function InputForm() {
     <>
       <select
         value={category}
+        className='select'
         onChange={({ target }) => setCategory(target.value)}>
         <option value=''>Category</option>
         {categories.map((cat, index) => (

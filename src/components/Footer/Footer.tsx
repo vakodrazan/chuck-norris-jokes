@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Context } from '../context/Context'
+import { Context } from '../../context/Context'
 
 export default function Footer() {
   const { jokeCounter, setJokeCounter, saveJokes } = React.useContext(Context)
@@ -17,7 +17,7 @@ export default function Footer() {
         />
         <button onClick={() => setJokeCounter(jokeCounter + 1)}>+</button>
       </div>
-      <button disabled={isDisabled} onClick={saveJokes}>
+      <button disabled={isDisabled} onClick={() => saveJokes('jokes.txt')}>
         Save jokes
       </button>
       {isErrorPopUp && <p>You can pick a number from 1 to 100.</p>}
