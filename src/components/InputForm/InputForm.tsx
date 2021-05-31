@@ -3,27 +3,55 @@ import { Context } from '../../context/Context'
 import './InputForm.css'
 
 export default function InputForm() {
-  const { fullName, handleValueChange, category, setCategory } =
-    React.useContext(Context)
+  const {
+    fullName,
+    handleValueChange,
+    category,
+    isOpen,
+    onOptionClicked,
+    onToggle,
+  } = React.useContext(Context)
 
-  const categories = ['nerdy', 'explicit']
+  const categories = ['Nerdy', 'Explicit']
+
+  const placeholder = isOpen ? 'Select category' : 'category'
+  const selectedValue = category || placeholder
+
   return (
-    <>
-      <select
-        value={category}
-        className='select'
-        onChange={({ target }) => setCategory(target.value)}>
-        <option value=''>Category</option>
-        {categories.map((cat, index) => (
-          <option key={cat + index} value={cat}>
-            {cat}
-          </option>
-        ))}
-      </select>
-      <fieldset>
-        <label>Impersonate Chuck Norris</label>
-        <input value={fullName} onChange={handleValueChange} />
+    <div className='wrapper'>
+      <div className='select'>
+        <div className='select__content'>
+          <p
+            className={
+              category
+                ? 'select__content__heading-default'
+                : 'select__content__heading'
+            }
+            onClick={onToggle}>
+            {selectedValue}
+          </p>
+          {isOpen && (
+            <ul className='select__content__options'>
+              {categories.map((cat) => (
+                <li
+                  className='select__content__options__item'
+                  onClick={() => onOptionClicked(cat)}
+                  key={cat}>
+                  {cat}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+      <fieldset className='full_name'>
+        <label className=''>Impersonate Chuck Norris</label>
+        <input
+          value={fullName}
+          onChange={handleValueChange}
+          className='full_name__input'
+        />
       </fieldset>
-    </>
+    </div>
   )
 }
