@@ -26,6 +26,20 @@
   border-radius: var(--border-radius);
 }
 
+.select__content--filled {
+  position: absolute;
+  top: -32px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #34394f;
+  max-width: 100%;
+  background-color: #fff;
+  padding: 16px;
+  margin-right: 58px;
+  width: 439px;
+  border-radius: var(--border-radius);
+}
+
 .select__content__heading {
   flex-grow: 0;
   font-size: 16px;

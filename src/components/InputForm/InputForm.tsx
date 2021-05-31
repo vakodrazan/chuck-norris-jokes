@@ -49,7 +49,8 @@ export default function InputForm() {
   return (
     <div className='wrapper'>
       <div className='select' onClick={onToggleOpen}>
-        <div className='select__content'>
+        <div
+          className={category ? 'select__content--filled' : 'select__content'}>
           <p
             className={
               category

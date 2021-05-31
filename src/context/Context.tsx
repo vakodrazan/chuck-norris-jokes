@@ -18,6 +18,7 @@ type JokeUrl = {
 const Context: any = React.createContext(null)
 
 function ContextProvider({ children }: ChildrenProp) {
+  // State
   const [joke, setJoke] = React.useState<JokeUrl[]>([])
   const [loading, setLoading] = React.useState(true)
   const [firstName, setFirstName] = React.useState('')
@@ -29,9 +30,9 @@ function ContextProvider({ children }: ChildrenProp) {
   const [jokeCounter, setJokeCounter] = React.useState(0)
   const [isOpen, setIsOpen] = React.useState(false)
 
+  // API url
   const FULL_NAME_URL: string = `firstName=${firstName}&lastName=${lastName}`
   const CATEGORY_URL: string = `limitTo=[${category.toLocaleLowerCase()}]`
-
   const RANDOM_URL: string = 'https://api.icndb.com/jokes/random'
   const URL_BY_FULL_NAME: string = `${RANDOM_URL}?${FULL_NAME_URL}`
   const URL_BY_CATEGORY: string = `${RANDOM_URL}?${CATEGORY_URL}`
@@ -46,7 +47,8 @@ function ContextProvider({ children }: ChildrenProp) {
 
   React.useEffect(() => {
     getJokes(RANDOM_URL)
-    // This line is required when deploying the site with all the useeffect
+    // This line is required when deploying the site
+    // Add this is with all the useeffect function
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -100,10 +102,12 @@ function ContextProvider({ children }: ChildrenProp) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jokeCounter])
 
+  // Save jokes as a text file
   function onSaveJokes(filename: string) {
-    let downloadJokesElement = document.createElement('a')
+    let downloadJokesElement: HTMLAnchorElement = document.createElement('a')
 
-    const convertedJokes = JSON.stringify(savedJokes)
+    // Convert the object into string
+    const convertedJokes: string = JSON.stringify(savedJokes)
 
     downloadJokesElement.setAttribute(
       'href',
