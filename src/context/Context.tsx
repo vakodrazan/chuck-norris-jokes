@@ -27,11 +27,12 @@ function ContextProvider({ children }: ChildrenProp) {
   const [savedJokes, setSavedJokes] = React.useState({})
   const [isNameChanged, setIsNameChanged] = React.useState(false)
   const [jokeCounter, setJokeCounter] = React.useState(0)
+  const [isOpen, setIsOpen] = React.useState(false)
 
   const URL_BY_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`
   const RANDOM_URL: string = 'http://api.icndb.com/jokes/random?'
-  const URL_BY_CATEGORY: string = `http://api.icndb.com/jokes/random?limitTo=[${category}]`
-  const URL_BY_CATEGORY_AND_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[${category}]`
+  const URL_BY_CATEGORY: string = `http://api.icndb.com/jokes/random?limitTo=[${category.toLocaleLowerCase()}]`
+  const URL_BY_CATEGORY_AND_FULL_NAME: string = `http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[${category.toLocaleLowerCase()}]`
 
   const URL_RANDOM_COUNT: string = `http://api.icndb.com/jokes/random`
 
@@ -70,7 +71,6 @@ function ContextProvider({ children }: ChildrenProp) {
       getJokes(RANDOM_URL)
     }
 
-    setCategory(category)
     if (firstName !== '' && lastName !== '') {
       setIsNameChanged(true)
     } else {
@@ -81,7 +81,7 @@ function ContextProvider({ children }: ChildrenProp) {
   const getJokeData = async () => {
     let jokeUrl: string
     if ((firstName && lastName) || category) {
-      jokeUrl = `${URL_RANDOM_COUNT}?firstName=${firstName}&lastName=${lastName}&limitTo=[${category}]`
+      jokeUrl = `${URL_RANDOM_COUNT}?firstName=${firstName}&lastName=${lastName}&limitTo=[${category.toLocaleLowerCase()}]`
     } else {
       jokeUrl = URL_RANDOM_COUNT
     }
@@ -113,6 +113,15 @@ function ContextProvider({ children }: ChildrenProp) {
     setJokeCounter(0)
   }
 
+  const onOptionClicked = (value: string) => {
+    setCategory(value)
+    setIsOpen(false)
+  }
+
+  const onToggle = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <Context.Provider
       value={{
@@ -122,13 +131,16 @@ function ContextProvider({ children }: ChildrenProp) {
         handleValueChange,
         drawNewRandomJoke,
         category,
-        setCategory,
         firstName,
         lastName,
         isNameChanged,
         jokeCounter,
         setJokeCounter,
         saveJokes,
+        isOpen,
+        setIsOpen,
+        onOptionClicked,
+        onToggle,
       }}>
       {children}
     </Context.Provider>
