@@ -110,7 +110,8 @@
   border-radius: var(--border-radius);
   padding: 4px;
   border-style: solid;
-  border: solid 2px #34394f;
+  border: solid 1px #34394f;
+  box-shadow: 1px 1px 0 #34394f, -1px -1px #34394f;
 }
 
 .full_name__input {

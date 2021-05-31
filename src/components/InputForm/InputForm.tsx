@@ -2,7 +2,6 @@ import * as React from 'react'
 import { Context } from '../../context/Context'
 import TextField from '@material-ui/core/TextField'
 import './InputForm.css'
-import InputBase from '@material-ui/core/InputBase'
 
 export default function InputForm() {
   const {
@@ -13,7 +12,6 @@ export default function InputForm() {
     onOptionClicked,
     onToggle,
   } = React.useContext(Context)
-  const [isClicked, setIsClicked] = React.useState(false)
   const categories = ['Nerdy', 'Explicit']
 
   const placeholder = isOpen ? 'Select category' : 'category'
