@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Context } from '../../context/Context'
-import profile from '../../images/chuck-norris-photo-lg.png'
-import unknownProfile from '../../images/random-photo-lg.jpg'
+import profile from '../../images/chuck-norris-photo.png'
+import unknownProfile from '../../images/random-photo.jpg'
 
 import './Header.css'
 
